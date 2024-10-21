@@ -43,6 +43,8 @@ def get_pet_labels(image_dir):
     except FileNotFoundError:
         print(f"The directory '{image_dir}' does not exist.")
 
+    # Dictionary key and label are in the correct format
+    # and retrieves 40 key-value pairs. e.g:- {'Poodle_07956.jpg': ['poodle'], 'fox_squirrel_01.jpg': ['fox squirrel'] ... }
     label_dict = dict()
 
     for filename in image_files:
