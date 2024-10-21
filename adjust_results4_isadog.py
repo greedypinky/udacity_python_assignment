@@ -92,23 +92,24 @@ def adjust_results4_isadog(results_dic, dogfile):
       #                       'as-NOT-a' dog.
 
     # print("what is dog_dict size? {}".format(len(dog_dict)))
-    for key in results_dic:
-        pet_label = results_dic[key][0]
-        classifier_label = results_dic[key][1]
+    # for key in results_dic:
+    for value in results_dic.values():
+        pet_label = value[0]
+        classifier_label = value[1]
         # image is a dog
         if pet_label in dog_dict:
             # print('DEBUG: pet label is dog match!')
             if classifier_label in dog_dict:
                 # classify as a dog (which is correct)
-                results_dic[key].extend([1, 1])
+                value.extend([1, 1])
             else:
                 # classify as not a dog (which is NOT correct) - it is actually a real dog, not a wolf
-                results_dic[key].extend([1, 0])
+                value.extend([1, 0])
             # image is a wolf, cat ,pig (not a dog)
         else:
             if classifier_label in dog_dict:
                 # it classifies as a dog (which is NOT correct) - false positive? wolf is not a dog
-                results_dic[key].extend([0, 1])
+                value.extend([0, 1])
             else:
                 # it classifies as NOT dog (which is correct)
-                results_dic[key].extend([0, 0])
+                value.extend([0, 0])
